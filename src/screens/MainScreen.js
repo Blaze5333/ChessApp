@@ -61,7 +61,11 @@ export default function MainScreen() {
           colors={['#2C2C2C', '#1A1A1A']}
           style={styles.cardGradient}
         >
-          <Text style={styles.stakeAmount}>{item.amount} USDC</Text>
+        <View style={{flexDirection:"row",alignItems:'center'}}>
+        <Text style={styles.stakeAmount}>{item.amount}</Text>
+        <Image source={require('../assets/icons/usdc_logo.png')} style={{height:55,width:55}}/>
+        </View>
+          
           <Text style={styles.stakeText}>{item.text}</Text>
           <TouchableOpacity style={styles.playButton}>
             <Text style={styles.playButtonText}>PLAY NOW</Text>
@@ -203,7 +207,7 @@ const styles = StyleSheet.create({
   },
   stakeAmount: {
     color: 'white',
-    fontSize: 32,
+    fontSize: 40,
     fontWeight: 'bold',
     marginBottom: 10,
      fontFamily:'Inter-ExtraBold'
