@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ChessSplashScreen from './src/components/ChessSplashScreen';
 import OnBoardingScreen from './src/screens/OnBoardingScreen';
 import MainScreen from './src/screens/MainScreen';
+import ChessPairingScreen from './src/screens/PairingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
         >
           <Stack.Screen name="Onboarding" component={OnBoardingScreen} />
           <Stack.Screen name='MainScreen' component={MainScreen}/>
+          <Stack.Screen name='PairingScreen' component={ChessPairingScreen}/>
         </Stack.Navigator>
       )}
     </NavigationContainer>

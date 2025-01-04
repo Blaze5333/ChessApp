@@ -20,7 +20,7 @@ const STAKE_OPTIONS = [
 const CARD_HEIGHT = height * 0.25;
 const SPACING = 15;
 
-export default function MainScreen() {
+export default function MainScreen({navigation}) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const [userLevel] = useState(12);
   const [progressToNext] = useState(75);
@@ -67,7 +67,7 @@ export default function MainScreen() {
         </View>
           
           <Text style={styles.stakeText}>{item.text}</Text>
-          <TouchableOpacity style={styles.playButton}>
+          <TouchableOpacity onPress={()=>{navigation.navigate('PairingScreen')}} style={styles.playButton}>
             <Text style={styles.playButtonText}>PLAY NOW</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -89,18 +89,24 @@ export default function MainScreen() {
             <Text style={{fontFamily:"Inter-Medium",color:'grey'}}>{truncateAddress(solanaAddress)}</Text>
           </View>
         </View>
-        <View style={{flexDirection:'row',alignItems:"center",gap:5,height:70,borderRadius:20,padding:10,backgroundColor:'#f7cf48'}}>
+        <View style={{flexDirection:'row',alignItems:"center",gap:5,height:70,borderRadius:20,padding:10,backgroundColor:'white'}}>
         <View style={{height:60,width:60,borderRadius:20}}>
           <Image
             source={require('../assets/icons/profile.png')}
             style={{height:'100%',width:"100%",borderRadius:20,resizeMode:'cover'}}
           />
         </View>
+        
         <View style={styles.levelContainer}>
             <Text style={styles.levelText}>Level {userLevel}</Text>
+            <View style={{flexDirection:'row',alignItems:'center'}}>
             <View style={styles.progressContainer}>
               <View style={[styles.progressBar, { width: `${progressToNext}%` }]} />
             </View>
+            <Image source={require('../assets/icons/trophy.png')} style={{height:35,width:35,position:'absolute',right:0}}/>
+            </View>
+           
+            
           </View>
         </View>
       </View>
@@ -157,7 +163,7 @@ const styles = StyleSheet.create({
      fontFamily:'Inter-Bold'
   },
   levelText: {
-    color: 'white',
+    color: 'black',
     fontSize: 13,
     fontWeight: 'bold',
     marginBottom: 5,
