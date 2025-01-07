@@ -25,16 +25,14 @@ const ChessPairingScreen = () => {
   const [isPending, setPending] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
 
-  // Animation values
   const bounceValue = useSharedValue(0);
   const rotateValue = useSharedValue(0);
   const dotOpacity1 = useSharedValue(0);
   const dotOpacity2 = useSharedValue(0);
   const dotOpacity3 = useSharedValue(0);
 
-  // Colors based on theme
   const colors = {
-    background: isDarkMode ? '#1a1a1a' : '#ffffff',
+    background: isDarkMode ? 'black' : '#ffffff',
     text: isDarkMode ? '#ffffff' : '#000000',
     inputBackground: isDarkMode ? '#333333' : '#f5f5f5',
     border: isDarkMode ? '#404040' : '#e0e0e0',
@@ -44,7 +42,6 @@ const ChessPairingScreen = () => {
   };
 
   useEffect(() => {
-    // Knight bounce animation
     bounceValue.value = withRepeat(
       withSequence(
         withSpring(1, { damping: 2, stiffness: 80 }),
@@ -54,7 +51,6 @@ const ChessPairingScreen = () => {
       true
     );
 
-    // Waiting dots animation
     if (isPending) {
       dotOpacity1.value = withRepeat(
         withSequence(
@@ -107,13 +103,11 @@ const ChessPairingScreen = () => {
 
   const handleChallenge = () => {
     setPending(true);
-    // Add your blockchain challenge logic here
   };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.content}>
-        {/* Animated Knight Symbol */}
         <Animated.Text style={[styles.knight, knightStyle, { color: colors.text }]}>
           ♞
         </Animated.Text>

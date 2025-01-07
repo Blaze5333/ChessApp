@@ -1,10 +1,17 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View ,ScrollView, Dimensions} from 'react-native';
+import { useDispatch } from 'react-redux';
+import { setUserAddress } from '../redux/userSlice';
 const {height,width}=Dimensions.get('window');
 
 const OnBoardingScreen = ({navigation}) => {
   const [name, setName] = useState('');
+  const dispatch = useDispatch();
+  const getStarted=()=>{
+    dispatch(setUserAddress("0x2dr"))
+    navigation.navigate('MainScreen')
+  }
 
   return (
     <ScrollView style={styles.screen}>
@@ -35,7 +42,7 @@ const OnBoardingScreen = ({navigation}) => {
             <Text style={styles.buttonText}>Connect Wallet</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=>{navigation.navigate('MainScreen')}} style={styles.startButton}>
+          <TouchableOpacity onPress={getStarted} style={styles.startButton}>
             <Text style={[styles.buttonText,{color:'white'}]}>Get Started</Text>
           </TouchableOpacity>
         </View>

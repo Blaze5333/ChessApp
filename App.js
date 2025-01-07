@@ -6,7 +6,11 @@ import ChessSplashScreen from './src/components/ChessSplashScreen';
 import OnBoardingScreen from './src/screens/OnBoardingScreen';
 import MainScreen from './src/screens/MainScreen';
 import ChessPairingScreen from './src/screens/PairingScreen';
-
+import Navigation from './Navigation';
+import { SocketProvider } from './src/config/SocketContext';
+import {Provider} from 'react-redux';
+import { store,persistor } from './src/redux';
+import { PersistGate } from 'redux-persist/integration/react';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -17,16 +21,15 @@ const App = () => {
       {isLoading ? (
         <ChessSplashScreen onFinish={() => setIsLoading(false)} />
       ) : (
-        <Stack.Navigator 
-          initialRouteName="Onboarding"
-          screenOptions={{
-            headerShown: false
-          }}
-        >
-          <Stack.Screen name="Onboarding" component={OnBoardingScreen} />
-          <Stack.Screen name='MainScreen' component={MainScreen}/>
-          <Stack.Screen name='PairingScreen' component={ChessPairingScreen}/>
-        </Stack.Navigator>
+        <Provider store={store}>
+        <PersistGate persistor={persistor} >
+        <SocketProvider>
+        <Navigation/>
+        </SocketProvider>
+        </PersistGate>
+        </Provider>
+       
+       
       )}
     </NavigationContainer>
   );
